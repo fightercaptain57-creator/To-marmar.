@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>رسالة شهرينا 💌</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Cairo:wght@400;600&family=Aref+Ruqaa:wght@700&display=swap');
+
+  :root{
+    --pink-bg-1: #ffe3ee;
+    --pink-bg-2: #ffd0e3;
+    --pink-deep: #ff8fb8;
+    --pink-mid: #ffb6cf;
+    --cream: #fff7fa;
+    --gold: #ffd166;
+    --ink: #5a3b47;
+    --shadow: rgba(160, 70, 100, .25);
+  }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0; min-height:100vh; font-family:'Cairo', sans-serif; color:var(--ink);
+    background: radial-gradient(circle at 15% 20%, #fff 0, transparent 40%),
+                radial-gradient(circle at 85% 80%, #fff 0, transparent 35%),
+                linear-gradient(160deg, var(--pink-bg-1), var(--pink-bg-2));
+    display:flex; flex-direction:column; align-items:center;
+    padding: 24px 14px 40px; overflow-x:hidden;
+  }
+  h1{
+    font-family:'Baloo 2', sans-serif; font-weight:800;
+    font-size: clamp(26px, 6vw, 40px); color: var(--pink-deep);
+    text-shadow: 2px 2px 0 #fff, 4px 4px 0 var(--shadow);
+    margin: 6px 0 2px; text-align:center;
+  }
+  .subtitle{ font-size:15px; color:#a86b85; margin-bottom:16px; text-align:center; max-width:420px; line-height:1.7; }
+
+  .stage-wrap{ position:relative; width:min(480px, 94vw); }
+  #stage{
+    position:relative; width:100%; height:min(560px, 74vh);
+    background: linear-gradient(180deg, #fff2f7 0%, #ffe9f2 55%, #ffe0ee 100%);
+    border-radius:26px; overflow-y:auto; overflow-x:hidden;
+    box-shadow:0 10px 0 var(--shadow), 0 16px 30px rgba(160,70,100,.18);
+    border:3px solid #fff;
+  }
+  .cloud{ position:absolute; background:#fff; border-radius:50px; opacity:.7; }
+
+  /* the whole group (kitty + ribbon + envelope) moves together, as one unit,
+     so it reads as the kitty herself carrying and opening the envelope */
+  .cart{
+    position:absolute; width:190px; height:120px; z-index:5;
+    transition: left 2.2s cubic-bezier(.3,.8,.4,1);
+  }
+
+  /* cat character: standing figure with a head + dress, original design */
+  .kitty{
+    position:absolute; left:6px; top:-28px; width:74px; height:118px; z-index:7;
+    transition: transform .45s ease;
+    transform-origin: 60% 85%;
+  }
+  .cart.opening .kitty{ animation: nudge .9s ease-in-out; }
+  @keyframes nudge{
+    0%{ transform: rotate(0deg); }
+    30%{ transform: rotate(-10deg) translateY(2px); }
+    55%{ transform: rotate(5deg); }
+    100%{ transform: rotate(0deg); }
+  }
+
+  .kitty .head{
+    position:relative; width:64px; height:52px; margin:0 auto; background:#fff;
+    border-radius:50% 50% 46% 46%/60% 60% 40% 40%;
+    box-shadow:0 5px 0 rgba(160,70,100,.2), inset 0 -5px 0 #ffeaf2;
+    border:3px solid #f7c9dc; z-index:3;
+  }
+  .kitty .ear{ position:absolute; top:-12px; width:22px; height:22px; background:#fff; border:3px solid #f7c9dc; border-radius:50%; }
+  .kitty .ear.l{ left:0px; } .kitty .ear.r{ right:0px; }
+  .kitty .bow::before, .kitty .bow::after{ content:''; position:absolute; width:11px; height:11px; background:var(--pink-deep); top:-9px; }
+  .kitty .bow::before{ left:-5px; clip-path:polygon(100% 0,0 50%,100% 100%); }
+  .kitty .bow::after{ right:-5px; clip-path:polygon(0 0,100% 50%,0 100%); }
+  .kitty .bow-center{ position:absolute; top:-7px; left:50%; width:6px; height:6px; background:#fff; border:2px solid var(--pink-deep); border-radius:50%; transform:translateX(-50%); }
+  .kitty .whiskers{ position:absolute; top:26px; left:6px; right:6px; height:12px; display:flex; justify-content:space-between; }
+  .kitty .whiskers span{ display:block; width:13px; height:2px; background:#e7a9c2; margin-top:3px; }
+
+  .kitty .body{
+    position:relative; width:56px; height:58px; margin:-6px auto 0;
+    background: var(--pink-mid);
+    border:3px solid var(--pink-deep);
+    border-radius: 40% 40% 50% 50%/30% 30% 60% 60%;
+    z-index:2;
+  }
+  .kitty .body::before{
+    content:''; position:absolute; left:50%; top:8px; width:14px; height:10px;
+    background: var(--pink-deep); border-radius:50%; transform:translateX(-50%);
+  }
+  .kitty .arm{ position:absolute; top:6px; width:14px; height:14px; background:#fff; border:3px solid #f7c9dc; border-radius:50%; z-index:3; }
+  .kitty .arm.l{ left:-8px; } .kitty .arm.r{ right:-8px; }
+  .kitty .leg{ position:absolute; bottom:-10px; width:14px; height:14px; background:#fff; border:3px solid #f7c9dc; border-radius:50%; z-index:1; }
+  .kitty .leg.l{ left:10px; } .kitty .leg.r{ right:10px; }
+
+  .kitty .paw{
+    position:absolute; right:-6px; top:70px; width:14px; height:14px;
+    background:#fff; border:3px solid #f7c9dc; border-radius:50%; z-index:8;
+  }
+
+  /* ribbon the kitty holds, connecting her paw to the envelope */
+  .ribbon{
+    position:absolute; left:74px; top:46px; width:26px; height:3px;
+    background:var(--pink-deep); z-index:4; border-radius:2px;
+  }
+
+  /* envelope, trailing just behind/right of the kitty, as if being pulled along */
+  .envelope{ position:absolute; left:96px; top:16px; width:94px; height:68px; z-index:5; }
+  .envelope .body{
+    position:absolute; inset:0; background:var(--cream);
+    border:3px solid var(--pink-deep); border-radius:8px;
+    box-shadow: 0 6px 0 var(--shadow);
+  }
+  .envelope .flap{
+    position:absolute; top:-2px; left:-3px; right:-3px; height:38px;
+    background: var(--pink-mid);
+    clip-path: polygon(0 0, 50% 70%, 100% 0);
+    border-top-left-radius:8px; border-top-right-radius:8px;
+    transform-origin: top center;
+    transition: transform .6s ease;
+  }
+  .cart.opening .envelope .flap{ transform: rotateX(180deg); }
+  .envelope .seal{
+    position:absolute; top:20px; left:50%; transform:translateX(-50%);
+    width:24px; height:24px; background:var(--pink-deep); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:12px; color:#fff;
+    box-shadow:0 3px 0 #d9628d;
+    transition: opacity .3s;
+  }
+  .cart.opening .envelope .seal{ opacity:0; }
+
+  .hint-btn{
+    position:absolute; bottom:18px; left:50%; transform:translateX(-50%);
+    font-family:'Baloo 2', sans-serif; font-weight:700; font-size:16px;
+    background:var(--pink-deep); color:#fff; border:none; border-radius:40px;
+    padding:11px 28px; cursor:pointer; box-shadow:0 5px 0 #d9628d; z-index:8;
+  }
+  .hint-btn:active{ transform:translateX(-50%) translateY(4px); box-shadow:0 1px 0 #d9628d; }
+
+  /* letter paper */
+  .letter-paper{
+    position:absolute; left:50%; top:230px; transform:translate(-50%, 10px);
+    width:84%; max-width:360px; background:#fffdf9;
+    border-radius:14px; box-shadow:0 10px 24px rgba(160,70,100,.22);
+    padding:22px 20px; margin-bottom:24px; opacity:0;
+    transition: opacity .6s ease, transform .8s ease;
+    z-index:10;
+  }
+  .letter-paper.show{ opacity:1; transform:translate(-50%, 0); }
+  .letter-title{ font-family:'Baloo 2', sans-serif; font-weight:800; color:var(--pink-deep); font-size:19px; margin-bottom:10px; text-align:center; }
+  .letter-body{ font-size:14.5px; line-height:2; color:#6b4457; text-align:center; }
+  .letter-line{ opacity:0; transform:translateY(8px); animation: lineIn .6s ease-out forwards; }
+  @keyframes lineIn{ to{ opacity:1; transform:translateY(0); } }
+  .letter-sign{ margin-top:14px; font-family:'Aref Ruqaa', serif; font-size:16px; color:var(--pink-deep); opacity:0; animation: lineIn .6s ease-out forwards; }
+
+  .controls-hint{ margin-top:14px; font-size:13px; color:#a86b85; text-align:center; }
+</style>
+</head>
+<body>
+
+  <h1>رسالة شهرَينا 💌</h1>
+  <p class="subtitle">اضغطي على الزر لتجلب القطة رسالة خاصة بمناسبة مرور شهرين على تعارفنا</p>
+
+  <div class="stage-wrap">
+    <div id="stage"></div>
+    <p class="controls-hint" id="hint">اضغطي "اجلبي الرسالة" لتبدأ القطة بسحب الرسالة إليكِ 🎀</p>
+  </div>
+
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const hint = document.getElementById('hint');
+  let stageW, stageH;
+
+  function resize(){ stageW = stage.clientWidth; stageH = stage.clientHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+
+  function addClouds(){
+    for(let i=0;i<3;i++){
+      const c = document.createElement('div');
+      c.className='cloud';
+      const w = 50+Math.random()*60;
+      c.style.width=w+'px'; c.style.height=(w*0.5)+'px';
+      c.style.left=(Math.random()*80)+'%'; c.style.top=(Math.random()*18)+'%';
+      stage.appendChild(c);
+    }
+  }
+  addClouds();
+
+  function kittyHTML(){
+    return `
+      <div class="head">
+        <div class="ear l"></div><div class="ear r"></div>
+        <div class="bow"></div><div class="bow-center"></div>
+        <div class="whiskers"><span></span><span></span><span></span></div>
+      </div>
+      <div class="body">
+        <div class="arm l"></div><div class="arm r"></div>
+        <div class="leg l"></div><div class="leg r"></div>
+      </div>
+    `;
+  }
+
+  const cart = document.createElement('div');
+  cart.className = 'cart';
+  cart.innerHTML = `
+    <div class="kitty">${kittyHTML()}<div class="paw"></div></div>
+    <div class="ribbon"></div>
+    <div class="envelope">
+      <div class="flap"></div>
+      <div class="body"></div>
+      <div class="seal">💗</div>
+    </div>
+  `;
+  cart.style.top = (stageH/2 - 60) + 'px';
+  cart.style.left = '-200px';
+  stage.appendChild(cart);
+
+  const startBtn = document.createElement('button');
+  startBtn.className = 'hint-btn';
+  startBtn.textContent = 'اجلبي الرسالة 🐾';
+  stage.appendChild(startBtn);
+
+  let step = 0; // 0 = idle, 1 = arrived, 2 = opened
+
+  startBtn.addEventListener('click', ()=>{
+    if(step === 0){
+      const targetX = stageW/2 - 95;
+      cart.style.left = targetX + 'px';
+      step = 1;
+      startBtn.textContent = 'افتحي الرسالة 💌';
+      hint.textContent = 'وصلت القطة بالرسالة! اضغطي على الزر لتفتحها';
+    } else if(step === 1){
+      cart.classList.add('opening');
+      step = 2;
+      startBtn.style.display = 'none';
+      hint.textContent = '';
+      setTimeout(showLetter, 700);
+    }
+  });
+
+  function showLetter(){
+    const paper = document.createElement('div');
+    paper.className = 'letter-paper';
+    paper.innerHTML = `
+      <div class="letter-title">إلى أغلى شخص عرفته 🎀</div>
+      <div class="letter-body" id="letterBody"></div>
+    `;
+    stage.appendChild(paper);
+
+    const lines = [
+      "مرّ شهران على أول يوم عرفتكِ فيه، وما زلت أذكر كل تفصيلة كأنها البارحة.",
+      "في هاتين الشهرين تعلّمت كم أنتِ شخص مميز، وكم تستحقين كل خير.",
+      "أحببتكِ بصدق، وكل يوم يمرّ يزيدني يقينًا بأنكِ أجمل ما حدث لي.",
+      "أشكركِ على كل لحظة، وعلى وجودكِ، وعلى محبتكِ التي تملأ قلبي.",
+      "وأعدكِ أن الأيام القادمة ستكون أجمل، لأنني أنوي أن أبقى بجانبكِ طويلًا 💗"
+    ];
+
+    requestAnimationFrame(()=>{
+      paper.classList.add('show');
+      setTimeout(()=>{ stage.scrollTo({ top: stage.scrollHeight, behavior:'smooth' }); }, 300);
+      const body = paper.querySelector('#letterBody');
+      lines.forEach((line, i)=>{
+        const p = document.createElement('div');
+        p.className = 'letter-line';
+        p.textContent = line;
+        p.style.animationDelay = (0.3 + i*0.5) + 's';
+        body.appendChild(p);
+      });
+      const sign = document.createElement('div');
+      sign.className = 'letter-sign';
+      sign.textContent = 'بكل الحب، من يحبك';
+      sign.style.animationDelay = (0.3 + lines.length*0.5 + 0.3) + 's';
+      body.appendChild(sign);
+    });
+  }
+})();
+</script>
+</body>
+</html>
